@@ -26,9 +26,10 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-page="/Students/Index">Students</a>
-                        </li>
+                        <a class="navbar-brand fw-bold text-primary" asp-page="/Students/Index">
+                            🎓 Student Manager
+                        </a>
+
 
                     </ul>
                 </div>
@@ -41,11 +42,12 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - StudentManagerApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <footer class="border-top footer text-muted mt-4">
+        <div class="container text-center">
+            © 2026 - Student Manager System | Built with ❤️ in Razor Pages (.NET 9)
         </div>
     </footer>
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

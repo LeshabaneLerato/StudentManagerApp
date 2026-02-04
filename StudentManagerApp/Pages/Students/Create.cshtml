@@ -1,16 +1,29 @@
 ﻿@page
 @model StudentManagerApp.Pages.Students.CreateModel
 
-<h2>Add Student</h2>
+<div class="container mt-4">
 
-<form method="post">
-    <div>
-        <label>Name:</label>
-        <input asp-for="Student.Name" />
-        <span asp-validation-for="Student.Name"></span>
+    <div class="card shadow rounded-4 p-4">
+        <h2 class="text-success mb-3">➕ Add New Student</h2>
+
+        <form method="post">
+
+            <div class="mb-3">
+                <label class="form-label">Student Name</label>
+                <input asp-for="Student.Name" class="form-control" />
+                <span asp-validation-for="Student.Name"
+                      class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Save Student
+            </button>
+
+            <a asp-page="Index" class="btn btn-secondary ms-2">
+                Back
+            </a>
+
+        </form>
     </div>
 
-    <button type="submit">Save</button>
-</form>
-
-<a asp-page="Index">Back</a>
+</div>
