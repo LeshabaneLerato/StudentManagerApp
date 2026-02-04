@@ -1,9 +1,11 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using StudentManagerApp.Data;
 using StudentManagerApp.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace StudentManagerApp.Pages.Students
 {
@@ -18,9 +20,23 @@ namespace StudentManagerApp.Pages.Students
 
         public List<Student> Students { get; set; }
 
+        // 🔍 Search term from URL
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
         public async Task OnGetAsync()
         {
-            Students = await _context.Students.ToListAsync();
+            // Start query
+            var query = _context.Students.AsQueryable();
+
+            // Apply filter if user typed something
+            if (!string.IsNullOrEmpty(SearchTerm))
+            {
+                query = query.Where(s =>
+                    s.Name.Contains(SearchTerm));
+            }
+
+            Students = await query.ToListAsync();
         }
     }
 }
