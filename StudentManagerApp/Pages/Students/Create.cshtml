@@ -1,0 +1,15 @@
+﻿@page
+@model StudentManagerApp.Pages.Students.CreateModel
+
+<h2>Add Student</h2>
+
+<form method="post">
+    <label>Name:</label>
+    <input asp-for="StudentName" />
+
+    <button type="submit">Save</button>
+</form>
+
+<p>@Model.Message</p>
+
+<a asp-page="Index">Back</a>
