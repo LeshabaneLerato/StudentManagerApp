@@ -1,0 +1,46 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using StudentManagerApp.Data;
+using StudentManagerApp.Models;
+using System.Threading.Tasks;
+
+namespace StudentManagerApp.Pages.Students
+{
+    public class DeleteModel : PageModel
+    {
+        private readonly ApplicationDbContext _context;
+
+        public DeleteModel(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        [BindProperty]
+        public Student Student { get; set; }
+
+        // Load student before delete
+        public async Task<IActionResult> OnGetAsync(int id)
+        {
+            Student = await _context.Students.FindAsync(id);
+
+            if (Student == null)
+                return RedirectToPage("Index");
+
+            return Page();
+        }
+
+        // Confirm delete
+        public async Task<IActionResult> OnPostAsync()
+        {
+            var student = await _context.Students.FindAsync(Student.Id);
+
+            if (student != null)
+            {
+                _context.Students.Remove(student);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("Index");
+        }
+    }
+}

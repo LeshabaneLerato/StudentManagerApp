@@ -4,12 +4,13 @@
 <h2>Add Student</h2>
 
 <form method="post">
-    <label>Name:</label>
-    <input asp-for="StudentName" />
+    <div>
+        <label>Name:</label>
+        <input asp-for="Student.Name" />
+        <span asp-validation-for="Student.Name"></span>
+    </div>
 
     <button type="submit">Save</button>
 </form>
-
-<p>@Model.Message</p>
 
 <a asp-page="Index">Back</a>

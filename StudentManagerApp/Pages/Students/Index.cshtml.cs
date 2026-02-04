@@ -1,20 +1,26 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using StudentManagerApp.Data;
 using StudentManagerApp.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace StudentManagerApp.Pages.Students
 {
     public class IndexModel : PageModel
     {
+        private readonly ApplicationDbContext _context;
+
+        public IndexModel(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public List<Student> Students { get; set; }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Students = new List<Student>
-            {
-                new Student { Id = 1, Name = "Lerato" },
-                new Student { Id = 2, Name = "Thabo" }
-            };
+            Students = await _context.Students.ToListAsync();
         }
     }
 }

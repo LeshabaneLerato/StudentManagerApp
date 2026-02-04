@@ -3,11 +3,24 @@
 
 <h2>Student List</h2>
 
-<ul>
+<a asp-page="Create">➕ Add New Student</a>
+
+<hr />
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+
     @foreach (var student in Model.Students)
     {
-        <li>@student.Name</li>
+        <tr>
+            <td>@student.Name</td>
+            <td>
+                <a asp-page="Edit" asp-route-id="@student.Id">✏️ Edit</a> |
+                <a asp-page="Delete" asp-route-id="@student.Id">❌ Delete</a>
+            </td>
+        </tr>
     }
-</ul>
-
-<a asp-page="Create">Add New Student</a>
+</table>
