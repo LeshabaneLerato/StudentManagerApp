@@ -10,6 +10,7 @@ namespace StudentManagerApp.Data
         {
         }
 
-        public DbSet<Student> Students { get; set; }
+        public DbSet<Student> Students => Set<Student>();
+        public DbSet<Course> Courses => Set<Course>();
     }
 }

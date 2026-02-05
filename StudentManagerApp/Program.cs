@@ -1,20 +1,36 @@
-﻿using StudentManagerApp.Data;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using StudentManagerApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ ADD THIS
+// --------------------
+// Database
+// --------------------
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 
-// Add services to the container.
+// --------------------
+// Identity
+// --------------------
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+})
+.AddEntityFrameworkStores<ApplicationDbContext>();
+
+// --------------------
+// Razor Pages
+// --------------------
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// --------------------
+// Middleware
+// --------------------
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -22,11 +38,16 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
 app.UseRouting();
+
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapStaticAssets();
-app.MapRazorPages()
-   .WithStaticAssets();
+// --------------------
+// Endpoints
+// --------------------
+app.MapRazorPages();
 
 app.Run();

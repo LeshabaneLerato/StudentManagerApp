@@ -1,0 +1,21 @@
+﻿@page "{id:int}"
+@model LearnerManagementSystem.Pages.Courses.EditModel
+
+<h2>✏️ Edit Course</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Course.CourseId" />
+
+    <div class="mb-3">
+        <label>Title</label>
+        <input asp-for="Course.Title" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Description</label>
+        <textarea asp-for="Course.Description" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+</form>

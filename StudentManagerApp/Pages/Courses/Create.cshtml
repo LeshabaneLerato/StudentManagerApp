@@ -1,0 +1,33 @@
+﻿@page
+@model StudentManagerApp.Pages.Course.CreateModel
+
+@{
+    ViewData["Title"] = "Add Course";
+}
+
+<h2 class="fw-bold text-primary mb-4">➕ Add New Course</h2>
+
+<form method="post" class="card shadow-sm p-4 rounded-4">
+    <div class="mb-3">
+        <label asp-for="Course.Name" class="form-label"></label>
+        <input asp-for="Course.Name" class="form-control" />
+        <span asp-validation-for="Course.Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Course.Description" class="form-label"></label>
+        <textarea asp-for="Course.Description" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Save
+    </button>
+
+    <a asp-page="Index" class="btn btn-secondary ms-2">
+        Cancel
+    </a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
