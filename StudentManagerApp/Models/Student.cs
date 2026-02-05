@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
+using StudentManagerApp.Data;
 namespace StudentManagerApp.Models
 {
     public class Student

@@ -1,0 +1,17 @@
+﻿@page "{id:int}"
+@model LearnerManagementSystem.Pages.Courses.DetailsModel
+
+<h2>📖 Course Details</h2>
+
+<div class="card p-4 shadow-sm">
+    <h4 class="mb-3">@Model.Course.Title</h4>
+
+    <p>
+        <strong>Description:</strong><br />
+        @Model.Course.Description
+    </p>
+</div>
+
+<a asp-page="Index" class="btn btn-secondary mt-3">
+    ⬅ Back to Courses
+</a>
